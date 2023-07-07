@@ -1,0 +1,68 @@
+*&---------------------------------------------------------------------*
+*& Include          ZFU_FORM_TOP
+*&---------------------------------------------------------------------*
+
+TABLES: ZFU_TALEP_TABLE.
+
+
+DATA: it_tab TYPE TABLE OF char100,
+      wa_tab LIKE LINE OF it_tab.
+
+DATA: wf_deli(1) TYPE c,
+      wf_hex TYPE x,
+      wf_rc TYPE i.
+
+DATA: gv_filename TYPE string,
+      gv_path TYPE string,
+      gv_fullpath TYPE string.
+
+DATA: lt_rows TYPE lvc_t_row,
+      ls_row  TYPE lvc_s_row.
+FIELD-SYMBOLS : <gfs_fc> TYPE lvc_s_fcat.
+
+DATA: e_activesheet TYPE ole2_object,
+      e_appl TYPE ole2_object,
+      e_work TYPE ole2_object,
+      e_cell TYPE ole2_object,
+      e_color TYPE ole2_object,
+      e_bold TYPE ole2_object,
+      e_italic TYPE ole2_object,
+      gs_palet1 TYPE ole2_object ,
+      gs_palet2 TYPE ole2_object ,
+      gs_palet TYPE ole2_object,
+      gs_cell1 TYPE ole2_object.
+
+DATA: gv_row TYPE i,
+      gv_val TYPE string.
+
+DATA: BEGIN OF gt_data OCCURS 0,
+        matnr TYPE matnr,
+        netwr TYPE netwr,
+        waers TYPE waers,
+      END OF gt_data.
+      DATA: gt_tablo TYPE TABLE OF zfu_talep_table,
+      gs_tablo TYPE zfu_talep_table.
+
+
+DATA: gt_list TYPE TABLE OF zfu_talep_st,
+      gs_list TYPE zfu_talep_st,
+      go_alv  TYPE REF TO cl_gui_alv_grid,
+      gt_fcat TYPE lvc_t_fcat,
+      go_cont TYPE REF TO cl_gui_custom_container,
+      wa_layout type lvc_s_layo.
+
+DATA: BEGIN OF gt1_data OCCURS 0,
+FABRIKA type  ZFU_FABRIKA_DE      ,
+KAPI_NO type  ZFU_KAPINO_DE       ,
+ONGORU  type  ZFU_ONGORU_DE       ,
+GERCEK  type  ZFU_GERCEK_DE       ,
+PALET_TIPI  type  ZFU_PTIPI_DE    ,
+UZUNLUK type  ZFU_UZUNLUK_DE      ,
+GENISLIK  type  ZFU_GENISLIK_DE   ,
+YUKSEKLIK type  ZFU_YUKSEKLIK_DE  ,
+M3  type  ZFU_M3_DE               ,
+STOKLANABILIR type  ZFU_STOKLAN_DE,
+AGIRLIK type  ZFU_AGIRLIK_DE      ,
+BL_SAYISI type  ZFU_BL_SAYI_DE    ,
+BL_NO type  ZFU_BL_NO_DE          ,
+      END OF gt1_data.
